@@ -1,5 +1,5 @@
 # Description
-#   A hubot script for searching and browsing Confluence.
+#   A hubot script for searching and browsing Confluence. Very super.
 #
 # Configuration:
 # HUBOT_CONFLUENCE_USERNAME - Confluence username.

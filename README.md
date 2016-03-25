@@ -1,6 +1,6 @@
 # hubot-super-confluence
 
-A hubot script for searching and browsing Confluence.
+A hubot script for searching and browsing Confluence. Very super.
 
 See [`src/super-confluence.coffee`](src/super-confluence.coffee) for full documentation.
 
