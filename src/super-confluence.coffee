@@ -32,7 +32,7 @@ textSearch = (response) ->
   opts =
     limit: 5
 
-  confluence.advancedSearch "type=page and text~#{query}", opts, (err, res) ->
+  confluence.advancedSearch "type=page and text~\"#{query}\"", opts, (err, res) ->
     if err
       response.send err
     else
