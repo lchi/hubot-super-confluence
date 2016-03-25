@@ -18,10 +18,6 @@ Then add **hubot-super-confluence** to your `external-scripts.json`:
 ]
 ```
 
-## Usage
-
-See the script for more usage details.
-
 ## Sample Interaction
 
 ```
