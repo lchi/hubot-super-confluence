@@ -7,10 +7,10 @@
   "keywords": "hubot, hubot-scripts",
   "repository": {
     "type": "git",
-    "url": "git://github.com/hubot-scripts/hubot-super-confluence.git"
+    "url": "git://github.com/lchi/hubot-super-confluence.git"
   },
   "bugs": {
-    "url": "https://github.com/hubot-scripts/hubot-super-confluence/issues"
+    "url": "https://github.com/lchi/hubot-super-confluence/issues"
   },
   "dependencies": {
     "atlassian-confluence": "2.0.1"
