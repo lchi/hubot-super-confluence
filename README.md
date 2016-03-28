@@ -18,6 +18,17 @@ Then add **hubot-super-confluence** to your `external-scripts.json`:
 ]
 ```
 
+### Configuration:
+
+You'll need to set the following environment variables to get started:
+
+```
+HUBOT_CONFLUENCE_USERNAME - Confluence username.
+HUBOT_CONFLUENCE_PASSWORD - Confluence password.
+HUBOT_CONFLUENCE_HOST - Hostname of the Confluence instance.
+HUBOT_CONFLUENCE_CONTEXT (optional) - Often '/wiki', defaults to ''
+```
+
 ## Sample Interaction
 
 ```
