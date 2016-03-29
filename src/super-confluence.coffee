@@ -26,6 +26,9 @@ module.exports = (robot) ->
   robot.respond /wiki\s+(.*)$/i, (response) ->
     textSearch response
 
+  robot.hear /how do i\s+(.*)$/i, (response) ->
+    autoRespond response
+
 textSearch = (response) ->
 
   query = response.match[1]
@@ -37,15 +40,32 @@ textSearch = (response) ->
       response.send err
     else
       numResults = res.results.length
-
       if numResults is 0
         response.send "No matches found for '#{query}'"
       else
         response.send "#{numResults} matches found (limit: #{opts.limit})"
-        pages = []
+        sendMatchesFound res.results, opts.limit, (s) -> response.send s
 
-        for page in res.results
-          pageLink = "#{CONFLUENCE_BASE_URL}#{page._links.webui}"
-          pages.push "#{page.title} - #{pageLink}"
+autoRespond = (response) ->
 
-        response.send pages.join '\n'
+  query = response.match[1]
+  opts =
+    limit: 5
+
+  confluence.advancedSearch "type=page and text~\"#{query}\"", opts, (err, res) ->
+    if err
+      response.send err
+    else
+      numResults = res.results.length
+      if numResults > 0
+        response.reply "#{numResults} matches found (limit: #{opts.limit})"
+        sendMatchesFound res.results, opts.limit, (s) -> response.reply s
+
+sendMatchesFound = (results, limit, response_function) ->
+  pages = []
+
+  for page in results
+    pageLink = "#{CONFLUENCE_BASE_URL}#{page._links.webui}"
+    pages.push "#{page.title} - #{pageLink}"
+
+  response_function pages.join '\n'
