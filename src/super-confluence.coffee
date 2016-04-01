@@ -6,6 +6,10 @@
 # HUBOT_CONFLUENCE_PASSWORD - Confluence password.
 # HUBOT_CONFLUENCE_HOST - Hostname of the Confluence instance.
 # HUBOT_CONFLUENCE_CONTEXT (optional) - Often '/wiki', defaults to ''
+# HUBOT_SUPER_CONFLUENCE_AUTORESPONSE_REGEX (optional) -
+#   Sets up a `hear` callback on the first capture group of the regex.
+#   For example, if set to "how do i (.*)" and someone asks 'how can i
+#   deploy' then the Confluence will be queried with `deploy`.
 #
 # Commands:
 #   hubot wiki <query> - Perform a full text search with <query>
@@ -26,8 +30,10 @@ module.exports = (robot) ->
   robot.respond /wiki\s+(.*)$/i, (response) ->
     textSearch response
 
-  robot.hear /how do i\s+(.*)$/i, (response) ->
-    autoRespond response
+  autorespond_regex = process.env.HUBOT_SUPER_CONFLUENCE_AUTORESPONSE_REGEX
+  if autorespond_regex
+    robot.hear new RegExp(autorespond_regex, 'i'), (response) ->
+      autoRespond response
 
 textSearch = (response) ->
 
