@@ -37,7 +37,7 @@ module.exports = (robot) ->
 
 textSearch = (response) ->
 
-  query = response.match[1]
+  query = encodeURIComponent(response.match[1])
   opts =
     limit: 5
 
@@ -54,7 +54,7 @@ textSearch = (response) ->
 
 autoRespond = (response) ->
 
-  query = response.match[1]
+  query = encodeURIComponent(response.match[1])
   opts =
     limit: 5
 
