@@ -37,7 +37,7 @@ module.exports = (robot) ->
 
 textSearch = (response) ->
 
-  query = encodeURIComponent(response.match[1])
+  query = response.match[1]
   opts =
     limit: 5
 
@@ -54,17 +54,17 @@ textSearch = (response) ->
 
 autoRespond = (response) ->
 
-  query = encodeURIComponent(response.match[1])
+  query = response.match[1]
   opts =
-    limit: 5
+    limit: 3
 
   confluence.advancedSearch "type=page and text~\"#{query}\"", opts, (err, res) ->
-    if err
-      response.send err
+    if query.length = 0 or err
+        # say nothing
     else
       numResults = res.results.length
       if numResults > 0
-        response.reply "#{numResults} matches found (limit: #{opts.limit})"
+        response.reply "Searching our wiki for \"#{query}\" reveals..."
         sendMatchesFound res.results, opts.limit, (s) -> response.reply s
 
 sendMatchesFound = (results, limit, response_function) ->

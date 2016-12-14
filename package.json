@@ -1,7 +1,7 @@
 {
   "name": "hubot-super-confluence",
   "description": "A hubot script for searching and browsing Confluence.",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "author": "Lucas Chi",
   "license": "MIT",
   "keywords": "hubot, hubot-scripts",
